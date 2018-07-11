@@ -9,39 +9,47 @@ To make this work, simply:
 1. Publish your application using `ipns name publish $HASH`.
 2. Save the returned hash.
 3. Find the IPFS ip addresses using `$ dig ipfs.io`. Example:
-  ```sh
-  $ dig +short ipfs.io
-  178.62.61.185
-  178.62.158.247
-  104.236.76.40
-  ...
-  ```
+
+    ```sh
+    $ dig +short ipfs.io
+    178.62.61.185
+    178.62.158.247
+    104.236.76.40
+    ...
+    ```
+
 4. Decide which domain or subdomain will host your IPFS application. We're going to use `ipfs.yourdomain.com`
 5. In the DNS administration for your domain, add an A record for each of the ipfs.io IPs addresses. Example:
-	```
-	yourdomain.com
 
-	ipfs     A     178.62.61.185
-	ipfs     A     178.62.158.247
-	ipfs     A     104.236.76.40
-	...
-	```
-	If you're using the root domain, your DNS rules should look like:
-	```
-	yourdomain.com
+    ```sh
+    yourdomain.com
 
-	@        A     178.62.61.185
-	@        A     178.62.158.247
-	@        A     104.236.76.40
-	...
-	```
+    ipfs     A     178.62.61.185
+    ipfs     A     178.62.158.247
+    ipfs     A     104.236.76.40
+    ...
+    ```
+
+    If you're using the root domain, your DNS rules should look like:
+
+    ```sh
+    yourdomain.com
+
+    @        A     178.62.61.185
+    @        A     178.62.158.247
+    @        A     104.236.76.40
+    ...
+    ```
+
 6. Next, the cool DNS trick. Add a TXT record with the hash of your IPFS application.
-	Example:
-	```
-	yourdomain.com
+    Example:
 
-	ipfs     TXT     dnslink=/ipfs/QmfDw7pfgtYfki6HfYNbjxjBHb45hD7GrrqDp2Vvcte1Cj
-	```
+    ```sh
+    yourdomain.com
+
+    ipfs     TXT     dnslink=/ipfs/QmfDw7pfgtYfki6HfYNbjxjBHb45hD7GrrqDp2Vvcte1Cj
+    ```
+
 7. Wait a little bit for DNS to propagate.
 8. Open `ipfs.yourdomain.com` and see that your page was loaded!
 
